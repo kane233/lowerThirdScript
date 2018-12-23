@@ -65,13 +65,11 @@ function adjustLowerThird(comp, lowerThirdParameters) {
 };
 
 
-
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////// Main
 
 var resourceString =
-    "group{orientation:'column', alignment:['fill','fill'],alignChildren:['left','top']\
+    "group{orientation:'column', alignment:['fill','fill'],alignChildren:['left','top'],\
+    icon: IconButton{preferredSize:[60,22]},\
     mainTextGroup: Group{orientation:'row',\
         mainTextLabel:StaticText{text:'main text', preferredSize:[80,-1]},\
         mainText: EditText{text:'enter main text here', characters:40}\
@@ -101,6 +99,8 @@ var resourceString =
 
 
 var UI = createUserInterface(this, resourceString, "lower third script");
+
+UI.icon.image = new File("D:\\project\\AEScript\\lower thirds script\\img\\logo.png");
 
 UI.fadeDurationGroup.fadeDurationText.onChange = function () {
     var myVal = parseFloat(UI.fadeDurationGroup.fadeDurationText.text);
