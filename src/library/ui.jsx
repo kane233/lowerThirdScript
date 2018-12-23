@@ -1,3 +1,5 @@
+
+
 function createUserInterface(thisObj, userInterfaceString, scriptName) {
     var pal = (thisObj instanceof Panel) ? thisObj : new Window("palette", scriptName,
         undefined, { resizeable: true });
@@ -16,5 +18,3 @@ function createUserInterface(thisObj, userInterfaceString, scriptName) {
     return UI;
 };
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////// Main
