@@ -1,4 +1,5 @@
 #include "library/ui.jsx"
+#include "library/uiImage.jsx"
 
 function deleteAllKeyframes(property) {
     while (property.numKeys > 0) {
@@ -100,8 +101,17 @@ var resourceString =
 
 var UI = createUserInterface(this, resourceString, "lower third script");
 
-UI.icon.image = new File("D:\\project\\AEScript\\lower thirds script\\img\\logo.png");
+#include "../img/logo.png.jsx"
+try {
+    UI.icon.image = getUiImage("logo.png", "lower thirds script", logopng);
+}
+catch (err) {
+    alert("failed to create UI image:" + err.toString())
+}
 
+UI.icon.onClick = function () {
+    OS.openUrl("http://fxphd.com")
+}
 UI.fadeDurationGroup.fadeDurationText.onChange = function () {
     var myVal = parseFloat(UI.fadeDurationGroup.fadeDurationText.text);
     if (isNaN(myVal)) {
