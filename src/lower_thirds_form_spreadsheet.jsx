@@ -14,9 +14,9 @@ function updateLowerThirdFormSpreadsheet(file, rowNumber) {
             parseFloat(colorArray[1]) / 255,
             parseFloat(colorArray[2]) / 255
         ],
-        fadeStartTime: row[3],
-        fadeEndTime: row[4],
-        icon: row[5]
+        fadeStartTime: spreadsheet.getCell(rowNumber,3),
+        fadeEndTime: spreadsheet.getCell(rowNumber,4),
+        icon: rowspreadsheet.getCell(rowNumber,5)
     };
 
     LowerThirdScript.adjustLowerThird(app.project.activeItem, lowerThirdParameters)
