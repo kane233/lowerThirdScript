@@ -4,6 +4,8 @@ const include = require('gulp-include');
 const header = require('gulp-header')
 const zip = require("gulp-zip")
 const del = require('del');
+const exec = require('child_process').exec;
+const path = require('path');
 
 var pkg = require('./package.json');
 var headerTemplate = ["/**",
@@ -13,6 +15,25 @@ var headerTemplate = ["/**",
     " * @license <%= pkg.license %>",
     " */"
 ].join("\n");
+
+function isWindows() {
+    var isWin = /^win/.test(process.platform);
+    return isWin;
+}
+
+function executeScript(absFilePath, callback) {
+    var shellCommand = isWindows() ? ('"G:\\Adobe\\Adobe After Effects CC 2018\\Support Files\\AfterFX.exe" -r ' + absFilePath) :
+        ('osascript -e \'tell application"Adobe After Effects CC 2017" to activate\' -e \'tell application "Adobe After Effects CC 2017" to DoScriptFile "' + absFilePath + '"\'')
+    exec(shellCommand, callback);
+}
+
+gulp.task("runMyScript", ["buildMyScript"], function (done) {
+    var absPath = path.join(__dirname, "dist/lower_thirds_script.jsx");
+    executeScript(absPath, function (error, stdout, stderr) {
+        done();
+    });
+});
+
 
 gulp.task("buildMyScript", ["preprocessSources"], function () {
     return gulp.src(".temp/lower_thirds_script.jsx")
