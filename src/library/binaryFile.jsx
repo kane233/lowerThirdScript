@@ -12,13 +12,13 @@
     file.open( "w" );
     file.write( rawData );
     file.close();
-    if(file.error != "") throw new Error("could not write file: "+file.error)
-  };
+    if(file.error != "") throw new Error("could not write file: "+file.error);
+  }
 
 
   function makeSureFolderExists(folder){
     if(!folder.exists) {
       folder.create();
     }
-  };
-};
+  }
+}

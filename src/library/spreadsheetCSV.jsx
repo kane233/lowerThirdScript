@@ -15,26 +15,26 @@ function Spreadsheet(file, options) {
 
             function nextTokenLookAhead() {
                 var nexTokenId = i + 1;
-                return (nexTokenId < csvString.length ? csvString[nexTokenId] : "")
-            };
+                return (nexTokenId < csvString.length ? csvString[nexTokenId] : "");
+            }
 
             function processLineBreak() {
                 addCSVCellToData(thisCell, currentRow, currentColumn);
                 cellStart = true;
                 currentRow++;
                 currentColumn = -1;
-            };
+            }
 
             function processCellStart() {
                 thisCell = "";
                 currentColumn++;
                 insideQuote = (token == '"');
                 if (insideQuote) {
-                    i++
-                    token = csvString[i]
+                    i++;
+                    token = csvString[i];
                 }
                 cellStart = false;
-            };
+            }
 
             for (i = 0; i < csvString.length; i++) {
                 token = csvString[i];
@@ -61,7 +61,7 @@ function Spreadsheet(file, options) {
                     thisCell += token;
                 }
             }
-        };
+        }
 
         function addCSVCellToData(cellData, row, column) {
             if (data == undefined) {
@@ -72,7 +72,7 @@ function Spreadsheet(file, options) {
             }
 
             data[row][column] = cellData;
-        };
+        }
 
         var data;
         options = options || {};
@@ -86,13 +86,13 @@ function Spreadsheet(file, options) {
 
         parseCSVString(rawData, options);
         return data;
-    };
+    }
 
     var Spreadsheet = loadCsvFormFile(file, options);
 
     function getCell(rowId, columnId) {
-        return Spreadsheet[rowId][columnId]
-    };
+        return Spreadsheet[rowId][columnId];
+    }
 
     this.getCell = getCell;
 }

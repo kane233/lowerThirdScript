@@ -1,11 +1,11 @@
 ﻿var OS = (function () {
   function isWindows() {
     return $.os.indexOf("Windows") != -1;
-  };
+  }
 
   function isMacOS() {
     return !isWindows();
-  };
+  }
 
 
   function openUrl(url) {
@@ -37,20 +37,20 @@
   function quoteForWindowsCmd(string) {
     // put a ^ before every META character that has a special meaning in CMD
     var metaChars = ['^', '(', ')', '%', '!', '"', '<', '>', '&', '|', '\n'];
-    var prefix = "^"
+    var prefix = "^";
     for (var i = 0; i < metaChars.length; i++) {
       string = replaceAll(string, metaChars[i], prefix + metaChars[i]);
     }
     return string;
-  };
+  }
 
   function replaceAll(string, search, replace) {
     return string.split(search).join(replace);
-  };
+  }
 
   return {
     isWindows: isWindows,
     isMacOS: isMacOS,
     openUrl: openUrl
-  }
+  };
 })();

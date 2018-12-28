@@ -1,6 +1,8 @@
+/* jshint ignore:start */
 #include "lower_thirds_moudle.jsx"
 
 #include "library/spreadsheetCSV.jsx"
+/* jshint ignore:end */
 
 function updateLowerThirdFormSpreadsheet(file, rowNumber) {
     var spreadsheet = new Spreadsheet(file);
@@ -19,7 +21,7 @@ function updateLowerThirdFormSpreadsheet(file, rowNumber) {
         icon: rowspreadsheet.getCell(rowNumber,5)
     };
 
-    LowerThirdScript.adjustLowerThird(app.project.activeItem, lowerThirdParameters)
+    LowerThirdScript.adjustLowerThird(app.project.activeItem, lowerThirdParameters);
 }
 
-updateLowerThirdFormSpreadsheet(new File("F:\\codeResearch\\AEScript\\lowerThirdScript\\test data\\sampleCSV.csv"),1)
+updateLowerThirdFormSpreadsheet(new File("F:\\codeResearch\\AEScript\\lowerThirdScript\\test data\\sampleCSV.csv"),1);

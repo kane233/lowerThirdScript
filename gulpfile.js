@@ -55,18 +55,18 @@ gulp.task('preprocessSources', ["clean"], function () {
         .pipe(gulp.dest(".temp"));
 });
 
-gulp.task("lint",function(){
+gulp.task("lint", function () {
     return gulp.src("src/**/*.js*")
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'));
+        .pipe(jshint({multistr:true}))
+        .pipe(jshint.reporter('default'));
 });
 
 gulp.task('clean', function () {
     del(['./dist', './.temp']);
 });
 
-gulp.task("watch",function(){
-    gulp.watch(["src/**/*.js*"],['lint']);
+gulp.task("watch", function () {
+    gulp.watch(["src/**/*.js*"], ['lint']);
 });
 
 gulp.task("default", ["buildMyScript"]);

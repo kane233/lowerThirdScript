@@ -1,5 +1,7 @@
+/* jshint ignore:start */
 #include "binaryFile.jsx"
 #include "filePath.jsx"
+/* jshint ignore:end */
 
 function getUiImage(fileName, toolName, rawData) {
 
@@ -10,5 +12,5 @@ function getUiImage(fileName, toolName, rawData) {
   function getImagePath(fileName, toolName) {
     var filePath = joinPath([getUserDataFolderPath(), toolName, fileName]);
     return filePath;
-  };
-};
+  }
+}

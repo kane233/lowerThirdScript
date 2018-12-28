@@ -1,76 +1,80 @@
 var LowerThirdScript = (function () {
 
-#include "library/ui.jsx"
-#include "library/uiImage.jsx"
+    /* jshint ignore:start */
+    #include "library/ui.jsx"
 
-function deleteAllKeyframes(property) {
-    while (property.numKeys > 0) {
-        property.removeKey(1);
-    }
-};
+    #include "library/uiImage.jsx"
 
+    /* jshint ignore:end */
 
-function fadeInLayer(layer, startTime, endTime) {
-
-    var opacityProperty = layer.property("ADBE Transform Group").property("ADBE Opacity");
-    deleteAllKeyframes(opacityProperty);
-
-    opacityProperty.setValueAtTime(startTime, 0);
-    opacityProperty.setValueAtTime(endTime, 100);
-};
-
-
-function adjustLowerThird(comp, lowerThirdParameters) {
-    var layerMainText = comp.layer("main text");
-    var layerSecondaryText = comp.layer("secondary text");
-    var layerIcon = comp.layer("icon");
-
-    app.beginUndoGroup("modify lower third");
-    // here we set our texts
-    if (layerMainText != null) {
-        layerMainText.property("ADBE Text Properties").property("ADBE Text Document").setValue(lowerThirdParameters.mainText);
-    }
-    if (layerSecondaryText != null) {
-        layerSecondaryText.property("ADBE Text Properties").property("ADBE Text Document").setValue(lowerThirdParameters.secondaryText);
-    }
-
-    // here we set the fill color
-    if (layerIcon != null) {
-        layerIcon.property("ADBE Effect Parade").property("ADBE Fill").property("ADBE Fill-0002").setValue(lowerThirdParameters.fillColor);
-        fadeInLayer(layerIcon, lowerThirdParameters.fadeStartTime, lowerThirdParameters.fadeEndTime);
-
-    }
-
-
-    if (layerSecondaryText != null) {
-        fadeInLayer(layerSecondaryText, lowerThirdParameters.fadeStartTime, lowerThirdParameters.fadeEndTime);
-    }
-
-    if (layerMainText != null) {
-        fadeInLayer(layerMainText, lowerThirdParameters.fadeStartTime, lowerThirdParameters.fadeEndTime);
-    }
-
-    if (layerIcon != null) {
-        var iconPrecomp = layerIcon.source;
-        if (iconPrecomp instanceof CompItem) {
-            iconPrecomp.layer("mamoworld").enabled = false;
-            iconPrecomp.layer("iexpressions").enabled = false;
-            iconPrecomp.layer("mochaimport").enabled = false;
-            var visibleIconLayer = iconPrecomp.layer(lowerThirdParameters.icon);
-            if (visibleIconLayer != null) {
-                visibleIconLayer.enabled = true;
-            }
+    function deleteAllKeyframes(property) {
+        while (property.numKeys > 0) {
+            property.removeKey(1);
         }
     }
 
-    app.endUndoGroup();
 
-};
+    function fadeInLayer(layer, startTime, endTime) {
+
+        var opacityProperty = layer.property("ADBE Transform Group").property("ADBE Opacity");
+        deleteAllKeyframes(opacityProperty);
+
+        opacityProperty.setValueAtTime(startTime, 0);
+        opacityProperty.setValueAtTime(endTime, 100);
+    }
 
 
-function showUI() {
-    var resourceString =
-        "group{orientation:'column', alignment:['fill','fill'],alignChildren:['left','top'],\
+    function adjustLowerThird(comp, lowerThirdParameters) {
+        var layerMainText = comp.layer("main text");
+        var layerSecondaryText = comp.layer("secondary text");
+        var layerIcon = comp.layer("icon");
+
+        app.beginUndoGroup("modify lower third");
+        // here we set our texts
+        if (layerMainText !== null) {
+            layerMainText.property("ADBE Text Properties").property("ADBE Text Document").setValue(lowerThirdParameters.mainText);
+        }
+        if (layerSecondaryText !== null) {
+            layerSecondaryText.property("ADBE Text Properties").property("ADBE Text Document").setValue(lowerThirdParameters.secondaryText);
+        }
+
+        // here we set the fill color
+        if (layerIcon !== null) {
+            layerIcon.property("ADBE Effect Parade").property("ADBE Fill").property("ADBE Fill-0002").setValue(lowerThirdParameters.fillColor);
+            fadeInLayer(layerIcon, lowerThirdParameters.fadeStartTime, lowerThirdParameters.fadeEndTime);
+
+        }
+
+
+        if (layerSecondaryText !== null) {
+            fadeInLayer(layerSecondaryText, lowerThirdParameters.fadeStartTime, lowerThirdParameters.fadeEndTime);
+        }
+
+        if (layerMainText !== null) {
+            fadeInLayer(layerMainText, lowerThirdParameters.fadeStartTime, lowerThirdParameters.fadeEndTime);
+        }
+
+        if (layerIcon !== null) {
+            var iconPrecomp = layerIcon.source;
+            if (iconPrecomp instanceof CompItem) {
+                iconPrecomp.layer("mamoworld").enabled = false;
+                iconPrecomp.layer("iexpressions").enabled = false;
+                iconPrecomp.layer("mochaimport").enabled = false;
+                var visibleIconLayer = iconPrecomp.layer(lowerThirdParameters.icon);
+                if (visibleIconLayer !== null) {
+                    visibleIconLayer.enabled = true;
+                }
+            }
+        }
+
+        app.endUndoGroup();
+
+    }
+
+
+    function showUI() {
+        var resourceString =
+            "group{orientation:'column', alignment:['fill','fill'],alignChildren:['left','top'],\
     icon: IconButton{preferredSize:[60,22]},\
     mainTextGroup: Group{orientation:'row',\
         mainTextLabel:StaticText{text:'main text', preferredSize:[80,-1]},\
@@ -100,71 +104,68 @@ function showUI() {
 }";
 
 
-    var UI = createUserInterface(this, resourceString, "@@name @@version");
+        var UI = createUserInterface(this, resourceString, "@@name @@version");
+        /* jshint ignore:start */
+        #include "../img/logo.png.jsx"
 
-    #include "../img/logo.png.jsx"
-    try {
-        UI.icon.image = getUiImage("logo.png", "lower thirds script", logopng);
-    }
-    catch (err) {
-        alert("failed to create UI image:" + err.toString())
-    }
-
-    UI.icon.onClick = function () {
-        OS.openUrl("http://fxphd.com")
-    }
-    UI.fadeDurationGroup.fadeDurationText.onChange = function () {
-        var myVal = parseFloat(UI.fadeDurationGroup.fadeDurationText.text);
-        if (isNaN(myVal)) {
-            UI.fadeDurationGroup.fadeDurationText.text = 0;
+        /* jshint ignore:end */
+        try {
+            UI.icon.image = getUiImage("logo.png", "lower thirds script", logopng);
+        } catch (err) {
+            alert("failed to create UI image:" + err.toString());
         }
-    };
 
-    UI.applyButton.onClick = function () {
-
-        var lowerThirdParameters = {
-            mainText: UI.mainTextGroup.mainText.text,
-            secondaryText: UI.secondaryTextGroup.secondaryText.text,
-            fillColor: [
-                parseFloat(UI.colorGroup.redText.text) / 255,
-                parseFloat(UI.colorGroup.greenText.text) / 255,
-                parseFloat(UI.colorGroup.blueText.text) / 255
-            ],
-            fadeInDuration: parseFloat(UI.fadeDurationGroup.fadeDurationText.text),
-            fadeStartTime: 0,
-            icon: undefined
+        UI.icon.onClick = function () {
+            OS.openUrl("http://fxphd.com");
+        };
+        UI.fadeDurationGroup.fadeDurationText.onChange = function () {
+            var myVal = parseFloat(UI.fadeDurationGroup.fadeDurationText.text);
+            if (isNaN(myVal)) {
+                UI.fadeDurationGroup.fadeDurationText.text = 0;
+            }
         };
 
-        if (UI.iconGroup.iconMamworld.value) {
-            lowerThirdParameters.icon = "mamoworld";
-        }
-        else if (UI.iconGroup.iconMochaImport.value) {
-            lowerThirdParameters.icon = "mochaimport";
-        }
-        else if (UI.iconGroup.iconiExpressions.value) {
-            lowerThirdParameters.icon = "iexpressions";
-        }
-        lowerThirdParameters.fadeEndTime = lowerThirdParameters.fadeStartTime + lowerThirdParameters.fadeInDuration;
+        UI.applyButton.onClick = function () {
 
-        ///////////// here follow the commands that do the job
+            var lowerThirdParameters = {
+                mainText: UI.mainTextGroup.mainText.text,
+                secondaryText: UI.secondaryTextGroup.secondaryText.text,
+                fillColor: [
+                    parseFloat(UI.colorGroup.redText.text) / 255,
+                    parseFloat(UI.colorGroup.greenText.text) / 255,
+                    parseFloat(UI.colorGroup.blueText.text) / 255
+                ],
+                fadeInDuration: parseFloat(UI.fadeDurationGroup.fadeDurationText.text),
+                fadeStartTime: 0,
+                icon: undefined
+            };
 
-        var comp = app.project.activeItem;
+            if (UI.iconGroup.iconMamworld.value) {
+                lowerThirdParameters.icon = "mamoworld";
+            } else if (UI.iconGroup.iconMochaImport.value) {
+                lowerThirdParameters.icon = "mochaimport";
+            } else if (UI.iconGroup.iconiExpressions.value) {
+                lowerThirdParameters.icon = "iexpressions";
+            }
+            lowerThirdParameters.fadeEndTime = lowerThirdParameters.fadeStartTime + lowerThirdParameters.fadeInDuration;
 
-        if (comp instanceof CompItem) {
-            adjustLowerThird(comp, lowerThirdParameters);
-        }
-        else {
-            alert("Please select a composition with lower third");
-        }
+            ///////////// here follow the commands that do the job
+
+            var comp = app.project.activeItem;
+
+            if (comp instanceof CompItem) {
+                adjustLowerThird(comp, lowerThirdParameters);
+            } else {
+                alert("Please select a composition with lower third");
+            }
+        };
     }
-};
 
 
 
-return {
-    adjustLowerThird: adjustLowerThird,
-    showUI: showUI
-};
+    return {
+        adjustLowerThird: adjustLowerThird,
+        showUI: showUI
+    };
 
-}) ();
-
+})();

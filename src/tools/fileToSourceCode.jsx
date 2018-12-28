@@ -13,7 +13,7 @@ function fileToBinaryString() {
         var contentAsString = rawData.toSource();
         var sourceCode = "var " + variableName + " = " + contentAsString + ";\n";
         return sourceCode;
-    };
+    }
 
     function readBianryFile(file) {
         file.encoding = "BINARY";
@@ -21,19 +21,19 @@ function fileToBinaryString() {
         var content = file.read();
         file.close();
         return content;
-    };
+    }
 
     function writeBinaryFile(filePath, content) {
         var output = new File(filePath);
         output.open("w");
         output.write(sourceCode);
         output.close();
-    };
+    }
 
     function stringToValidVariableName(string) {
         return string.replace(/\W/g, "")  //remove anything that is not letter,digit or _
         .replace(/^\d+/, "");  //remove any digits at the beginning
-    };
+    }
 }
 
 fileToBinaryString();

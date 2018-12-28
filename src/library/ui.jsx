@@ -11,10 +11,10 @@ function createUserInterface(thisObj, userInterfaceString, scriptName) {
     pal.layout.resize();
     pal.onResizing = pal.onResize = function () {
         this.layout.resize();
-    }
+    };
     if ((pal != null) && (pal instanceof Window)) {
         pal.show();
     }
     return UI;
-};
+}
 

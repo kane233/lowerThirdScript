@@ -8,19 +8,19 @@
       age--;
     }
     return age;
-  };
+  }
 
   function getName(){
     return name;
-  };
+  }
 
   function sayHello(){
     alert("Hello, my name is "+ getName());
-  };
+  }
 
   function setName(newName){
     name = newName;
-  };
+  }
 
   var yearsOfExperience = 0;
 
@@ -28,7 +28,7 @@
   this.getName = getName;
   this.setName = setName;
   this.sayHello = sayHello;
-};
+}
 
 
 var peter = new Person("Peter Pan",new Date(1995,0,30));
