@@ -6,6 +6,7 @@ const zip = require("gulp-zip")
 const del = require('del');
 const exec = require('child_process').exec;
 const path = require('path');
+const jshint = require('gulp-jshint');
 
 var pkg = require('./package.json');
 var headerTemplate = ["/**",
@@ -54,8 +55,18 @@ gulp.task('preprocessSources', ["clean"], function () {
         .pipe(gulp.dest(".temp"));
 });
 
+gulp.task("lint",function(){
+    return gulp.src("src/**/*.js*")
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
+});
+
 gulp.task('clean', function () {
     del(['./dist', './.temp']);
+});
+
+gulp.task("watch",function(){
+    gulp.watch(["src/**/*.js*"],['lint']);
 });
 
 gulp.task("default", ["buildMyScript"]);
