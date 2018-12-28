@@ -1,7 +1,7 @@
 {
   "name": "lowerthird",
   "version": "1.0.0",
-  "description": "",
+  "description": "change the content of a lower third with an intuitive UI",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,14 +11,23 @@
     "url": "git+https://github.com/kane233/lowerThirdScript.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/kane233/lowerThirdScript/issues"
   },
-  "homepage": "https://github.com/kane233/lowerThirdScript#readme",
+  "homepage": "https://github.com/kane233",
   "devDependencies": {
     "gulp": "^3.9.0",
+    "gulp-header": "^2.0.7",
     "gulp-include": "^2.3.1",
-    "gulp-replace": "^1.0.0"
+    "gulp-replace": "^1.0.0",
+    "gulp-yuicompressor": "0.0.3",
+    "gulp-zip": "^4.2.0"
+  },
+  "kane": {
+    "name": "Lower Third Script"
+  },
+  "dependencies": {
+    "del": "^3.0.0"
   }
 }

@@ -100,7 +100,7 @@ function showUI() {
 }";
 
 
-    var UI = createUserInterface(this, resourceString, "lower third script");
+    var UI = createUserInterface(this, resourceString, "@@name @@version");
 
     #include "../img/logo.png.jsx"
     try {
