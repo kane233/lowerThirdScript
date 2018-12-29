@@ -110,7 +110,7 @@ var LowerThirdScript = (function () {
 
         /* jshint ignore:end */
         try {
-            UI.icon.image = getUiImage("logo.png", "lower thirds script", logopng);
+            UI.icon.image = getUiImage("logoClientX.png", "lower thirds script", logopng);
         } catch (err) {
             alert("failed to create UI image:" + err.toString());
         }
