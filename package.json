@@ -1,6 +1,6 @@
 {
   "name": "lowerthird",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "change the content of a lower third with an intuitive UI",
   "main": "index.js",
   "scripts": {
