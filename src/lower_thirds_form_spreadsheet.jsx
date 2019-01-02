@@ -1,10 +1,10 @@
 /* jshint ignore:start */ 
 #include "lower_thirds_moudle.jsx"
 #include "library/spreadsheetCSV.jsx"
-#include "renderComp.jsx"
+#include "library/renderComp.jsx"
 /* jshint ignore:end */
 
-function LowerThirdsSpreadsheet(file, comp) {
+function LowerThirdsSpreadSheet(file, comp) {
     var spreadsheet = new Spreadsheet(file);
 
     function applyRow(rowNumber) {
@@ -19,7 +19,7 @@ function LowerThirdsSpreadsheet(file, comp) {
             ],
             fadeStartTime: spreadsheet.getCell(rowNumber, 3),
             fadeEndTime: spreadsheet.getCell(rowNumber, 4),
-            icon: rowspreadsheet.getCell(rowNumber, 5)
+            icon: spreadsheet.getCell(rowNumber, 5)
         };
 
         LowerThirdScript.adjustLowerThird(comp, lowerThirdParameters);
