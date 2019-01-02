@@ -93,6 +93,11 @@ function Spreadsheet(file, options) {
     function getCell(rowId, columnId) {
         return Spreadsheet[rowId][columnId];
     }
+    function getNumRows() {
+        return Spreadsheet.length;
+    }
+
 
     this.getCell = getCell;
+    this.getNumRows = getNumRows;
 }
