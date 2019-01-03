@@ -67,12 +67,15 @@
     }
 
 }
+
+/* example rendering with AME
 renderComp(app.project.activeItem, {
     renderSettingsTemplate: "最佳设置",
-    outputMoudleTemplate: ["无损"],
     file: [ "F:\\zhunxing\\renderOutPut\\DELETE\\foo.mov"],
     renderInAME:true
 });
+*/
+
 /* complex example
 renderComp(app.project.activeItem, {
     renderSettingsTemplate: "最佳设置",
