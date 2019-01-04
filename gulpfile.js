@@ -69,4 +69,15 @@ gulp.task("watch", function () {
     gulp.watch(["src/**/*.js*"], ['lint']);
 });
 
+gulp.task("renderSpreadsheet",function (done) {
+    var absPath = path.join(__dirname, "src/renderMySpreadSheet.jsx");
+    executeScript(absPath, function (error, stdout, stderr) {
+        done();
+    });
+});
+
+gulp.task("watchSpreadSheet",function(){
+    gulp.watch(["test data/sampleCSV.csv*"], ['renderSpreadsheet']);
+});
+
 gulp.task("default", ["buildMyScript"]);
